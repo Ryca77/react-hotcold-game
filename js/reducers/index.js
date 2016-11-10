@@ -4,7 +4,7 @@ var number = Math.floor(Math.random() * 100) + 1;
 
 var initialGameState = {
 	userGuess: '',
-	number: number;
+	number: number,
 	guessArray: [],
 	response: 'Make your guess!',
 	guesses: 0,

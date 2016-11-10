@@ -4,7 +4,7 @@
 //start new game
 
 //guess number
-var  GUESS_NUMBER = 'GUESS_NUMBER';
+var GUESS_NUMBER = 'GUESS_NUMBER';
 var guessNumber = function(guess) {
 	return {
 		type: GUESS_NUMBER,
@@ -31,7 +31,7 @@ var newGame = function(number) {
 };
 
 exports.GUESS_NUMBER = GUESS_NUMBER;
-exports.guessNumber - guessNumber;
+exports.guessNumber = guessNumber;
 exports.RESPONSE = RESPONSE;
 exports.response = response;
 exports.NEW_GAME = NEW_GAME;
