@@ -28,19 +28,19 @@ var gameReducer = function(state, action) {
 			gameWon = true;
 		}
 		else if(difference <= 10) {
-			response = 'boiling hot';
+			response = 'Boiling hot';
 		}
 		else if(difference <= 20) {
-			response = 'hot';
+			response = 'Hot';
 		}
 		else if(difference <= 30) {
-			response = 'warm';
+			response = 'Warm';
 		}
 		else if(difference <= 50) {
-			response = 'cold';
+			response = 'Cold';
 		}
 		else {
-			response = 'freezing cold';
+			response = 'Freezing cold';
 		}
 	}
 	else if(action.type === actions.NEW_GAME) {
