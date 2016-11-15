@@ -3,13 +3,13 @@ var connect = require('react-redux').connect;
 
 var Guesses = function(props) {
 	console.log(props);
-	var guessArray = [];
+	var guessList = [];
 	var guess = props.guessArray;
-	for(var i = 0; i < props.guess.length; i++) {
-		guessArray.push(<li key={i}>{props.guess[i]}</li>);
+	for(var i = 0; i < guess.length; i++) {
+		guessList.push(<li key={i}>{guess[i]}</li>);
 	}
 	return (
-		<div className="guesses">Guesses: {guessArray}</div>
+		<div className="guesses">Guesses: {guessList}</div>
 	)
 };
 

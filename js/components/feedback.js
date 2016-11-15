@@ -2,37 +2,7 @@ var React = require('react');
 var connect = require('react-redux').connect;
 
 var Feedback = function(props) {
-	var number = props.number;
-	var guess = props.guessArray;
-	for(var i = 0; i < guess.length; i++) {
-		var difference = Math.abs(guess[i] - number);
-	}
-	console.log(number);
-	console.log(difference);
-	var response = null;
-	var gameWon = props.gameWon;
-	if(difference == undefined) {
-		response = 'Make your guess!'
-	}
-	else if(difference == 0) {
-		response = 'Hooray you won!!';
-		gameWon = true;
-	}
-	else if(difference <= 10) {
-		response = 'Boiling hot';
-	}
-	else if(difference <= 20) {
-		response = 'Hot';
-	}
-	else if(difference <= 30) {
-		response = 'Warm';
-	}
-	else if(difference <= 50) {
-		response = 'Cold';
-	}
-	else {
-		response = 'Freezing cold';
-	}
+	var response = props.response;
 	return (
 		<div className="feedback">{response}</div>
 	)

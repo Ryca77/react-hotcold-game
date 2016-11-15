@@ -42,9 +42,10 @@ var gameReducer = function(state, action) {
 		else {
 			response = 'Freezing cold';
 		}
+		return Object.assign({}, state, {response: response}, {gameWon: gameWon});
 	}
 	else if(action.type === actions.NEW_GAME) {
-		return Object.assign({}, initialGameState);
+		return Object.assign({}, state, initialGameState, {number: Math.floor(Math.random() * 100) + 1}, {guessArray: []});
 	}
 	return state;
 }
