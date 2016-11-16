@@ -10,7 +10,7 @@ var Guesses = function(props) {
 	}
 	return (
 		<div className="guesses">Guesses: {guessList}</div>
-	)
+	);
 };
 
 var mapStateToProps = function(state, props) {
@@ -21,8 +21,8 @@ var mapStateToProps = function(state, props) {
 		response: state.response,
 		guesses: state.guesses,
 		gameWon: state.gameWon
-	}
-}
+	};
+};
 
 var Container = connect(mapStateToProps)(Guesses);
 

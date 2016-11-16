@@ -8,7 +8,8 @@ var initialGameState = {
 	guessArray: [],
 	response: 'Make your guess!',
 	guesses: 0,
-	gameWon: false
+	gameWon: false,
+	fewestGuesses: ''
 };
 
 var gameReducer = function(state, action) {
@@ -47,6 +48,14 @@ var gameReducer = function(state, action) {
 	else if(action.type === actions.NEW_GAME) {
 		return Object.assign({}, state, initialGameState, {number: Math.floor(Math.random() * 100) + 1}, {guessArray: []});
 	}
+
+	else if(action.type === actions.FETCH_FEWEST_GUESSES) {
+		return Object.assign({}, state, {fewestGuesses: 0});
+	}
+	else if(action.type === actions.SAVE_FEWEST_GUESSES) {
+		return Object.assign({}, state, {fewestGuesses: 0});
+	}
+
 	return state;
 }
 

@@ -5,7 +5,7 @@ var Counter = function(props) {
 	var count = props.guesses
 	return (
 		<div className="counter">Guess Count: {count}</div>
-	)
+	);
 };
 
 var mapStateToProps = function(state, props) {
@@ -16,8 +16,8 @@ var mapStateToProps = function(state, props) {
 		response: state.response,
 		guesses: state.guesses,
 		gameWon: state.gameWon
-	}
-}
+	};
+};
 
 var Container = connect(mapStateToProps)(Counter);
 

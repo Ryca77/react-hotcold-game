@@ -1,10 +1,10 @@
 var React = require('react');
 var connect = require('react-redux').connect;
 
-var Feedback = function(props) {
-	var response = props.response;
+var Record = function(props) {
+	var record = props.record;
 	return (
-		<div className="feedback">{response}</div>
+		<div className="record">Record: {record}</div>
 	);
 };
 
@@ -15,10 +15,11 @@ var mapStateToProps = function(state, props) {
 		guessArray: state.guessArray,
 		response: state.response,
 		guesses: state.guesses,
-		gameWon: state.gameWon
+		gameWon: state.gameWon,
+		record: state.record
 	};
 };
 
-var Container = connect(mapStateToProps)(Feedback);
+var Container = connect(mapStateToProps)(Record);
 
 module.exports = Container;

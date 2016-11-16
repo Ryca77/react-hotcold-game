@@ -5,11 +5,22 @@ var actions = require('../actions/index');
 var Feedback = require('./feedback');
 var Guesses = require('./guesses');
 var Counter = require('./counter');
+var Record = require('./record');
 
 var GameContainer = React.createClass({
 	getInitialState: function() {
 		return {
 			userGuess: ''
+		}
+	},
+
+	componentDidMount: function() {
+		this.props.dispatch(actions.getRecord());
+	},
+
+	compenentWillReceiveProps: function() {
+		if(props.gameWon == true) {
+			this.props.dispatch(actions.postRecord(props.guesses));
 		}
 	},
 
@@ -41,6 +52,7 @@ var GameContainer = React.createClass({
       			</form>
       			<Guesses className="guesses" />
       			<Counter className="counter" />
+      			<Record className="record" />
       			<button type="button" className="newgame" onClick={this.newGame}>New Game</button>
       		</div>
     	);
