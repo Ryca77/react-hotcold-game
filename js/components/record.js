@@ -2,6 +2,7 @@ var React = require('react');
 var connect = require('react-redux').connect;
 
 var Record = function(props) {
+	console.log(props);
 	var record = props.record;
 	return (
 		<div className="record">Record: {record}</div>

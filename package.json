@@ -1,7 +1,7 @@
 {
-  "name": "thinkful-react-starter",
+  "name": "hot-cold-game",
   "version": "0.0.1",
-  "description": "A React template",
+  "description": "",
   "main": "js/index.js",
   "scripts": {
     "start": "http-server -c-1 build",

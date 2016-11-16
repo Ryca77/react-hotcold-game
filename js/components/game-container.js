@@ -18,8 +18,9 @@ var GameContainer = React.createClass({
 		this.props.dispatch(actions.getRecord());
 	},
 
-	compenentWillReceiveProps: function() {
+	componentWillReceiveProps: function(props) {
 		if(props.gameWon == true) {
+			console.log(props.guesses);
 			this.props.dispatch(actions.postRecord(props.guesses));
 		}
 	},

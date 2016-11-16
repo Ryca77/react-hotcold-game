@@ -47,9 +47,10 @@ var saveFewestGuesses = function(record) {
 };
 
 var getRecord = function() {
-	return function(dispatch, record) {
+	return function(dispatch) {
+		var method = {method: 'GET'};
 		var url = "/fewest-guesses";	
-		return fetch(url)
+		return fetch(url, method)
 		.then(function(response) {
             if (response.status < 200 || response.status >= 300) {
                 throw error;
@@ -68,34 +69,31 @@ var getRecord = function() {
         .catch(function() {
             console.log('error');
         });
-	};
+	}
 };
 
 var postRecord = function(total) {
-	record = total;
 	return function(dispatch) {
-		return $.ajax({
-			method: "POST",
-			url: "/fewest-guesses",
-			data: {record: record}
-		})
+		var method = {method: 'POST'};
+		var url = "/fewest-guesses"	
+		return fetch(url, method)
 		.then(function(response) {
-            if (response.status < 200 || response.status >= 300) {
-                throw error;
+       	    if (response.status < 200 || response.status >= 300) {
+           	    throw error;
             }
             return response;
-        })
-        .then(function(data) {
-            var record = data.total;
-            return dispatch(
-                saveFewestGuesses(response.record.record)
-            );
-        })
+    	    })
+    	.then(function(data) {
+            var record = data;
+   	        return dispatch(
+   	            saveFewestGuesses(total)
+   	        );
+   	    })
         .catch(function() {
-            console.log('error');
-        });
-	};
-};
+   	        console.log('error');
+   	    });
+	}
+};	
 
 exports.GUESS_NUMBER = GUESS_NUMBER;
 exports.guessNumber = guessNumber;
