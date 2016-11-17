@@ -53,7 +53,7 @@ var gameReducer = function(state, action) {
 		return Object.assign({}, state, {record: record});
 	}
 	else if(action.type === actions.SAVE_FEWEST_GUESSES) {
-		return Object.assign({}, state, {record: record});
+		return Object.assign({}, state, {record: guesses});
 	}
 
 	return state;

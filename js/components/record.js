@@ -1,8 +1,14 @@
 var React = require('react');
 var connect = require('react-redux').connect;
 
+var actions = require('../actions/index');
+
 var Record = function(props) {
 	console.log(props);
+	if(props.gameWon == true) {
+		console.log(props.gameWon);
+		props.dispatch(actions.postRecord(props.guesses));
+	}
 	var record = props.record;
 	return (
 		<div className="record">Record: {record}</div>

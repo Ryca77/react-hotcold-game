@@ -39,21 +39,24 @@ var fetchFewestGuesses = function(record) {
 
 //save fewest guesses
 var SAVE_FEWEST_GUESSES = 'SAVE_FEWEST_GUESSES';
-var saveFewestGuesses = function(record) {
+var saveFewestGuesses = function(guesses) {
 	return {
 		type: SAVE_FEWEST_GUESSES,
-		record: record
+		record: guesses
 	};
 };
 
 var getRecord = function() {
+	console.log('getting');
 	return function(dispatch) {
 		var method = {method: 'GET'};
-		var url = "/fewest-guesses";	
+		var url = '/fewest-guesses';	
 		return fetch(url, method)
 		.then(function(response) {
-            if (response.status < 200 || response.status >= 300) {
-                throw error;
+            if(response.status < 200 || response.status >= 300) {
+                var error = new Error(response.statusText);
+        		error.response = response;
+        		throw error;
             }
             return response;
         })
@@ -62,9 +65,7 @@ var getRecord = function() {
         })
         .then(function(data) {
             var record = data.record;
-            return dispatch(
-                fetchFewestGuesses(record)
-            );
+            return dispatch(fetchFewestGuesses(record));
         })
         .catch(function() {
             console.log('error');
@@ -72,22 +73,23 @@ var getRecord = function() {
 	}
 };
 
-var postRecord = function(total) {
+var postRecord = function(guesses) {
+	console.log('posting');
 	return function(dispatch) {
 		var method = {method: 'POST'};
-		var url = "/fewest-guesses"	
+		var url = '/fewest-guesses';	
 		return fetch(url, method)
 		.then(function(response) {
        	    if (response.status < 200 || response.status >= 300) {
+           	    var error = new Error(response.statusText);
+        		error.response = response;
            	    throw error;
             }
             return response;
     	    })
     	.then(function(data) {
-            var record = data;
-   	        return dispatch(
-   	            saveFewestGuesses(total)
-   	        );
+            var guesses = data;
+   	        return dispatch(saveFewestGuesses(guesses));
    	    })
         .catch(function() {
    	        console.log('error');
