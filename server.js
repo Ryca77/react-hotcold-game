@@ -16,14 +16,21 @@ app.use(express.static('build'));
 
 var currentRecord = null;
 
-/*app.get('/fewest-guesses', function(req, res) {
-	res.json({record: storage.currentRecord});
-});*/
+app.get('/fewest-guesses', function(req, res) {
+	console.log(currentRecord);
+	res.json({record: currentRecord});
+});
 
-app.post('/fewest-guesses/:guesses', function(req, res) {
-	var record = req.params.guesses;
+app.post('/fewest-guesses', function(req, res) {
+	var totalGuesses = req.body.guesses;
+	console.log(totalGuesses);
 	var session = req.session;
-	console.log(session);
+	if(currentRecord == null || totalGuesses < currentRecord) {
+		session.record = totalGuesses;
+		currentRecord = totalGuesses;
+	}
+	console.log(session.record);
+	console.log(currentRecord);
 });
 
 app.listen(process.env.PORT || 8080, process.env.IP);

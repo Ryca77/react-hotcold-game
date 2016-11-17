@@ -20,7 +20,8 @@ var mapStateToProps = function(state, props) {
 		guessArray: state.guessArray,
 		response: state.response,
 		guesses: state.guesses,
-		gameWon: state.gameWon
+		gameWon: state.gameWon,
+		record: state.record
 	};
 };
 

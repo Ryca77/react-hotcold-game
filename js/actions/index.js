@@ -75,10 +75,15 @@ var getRecord = function() {
 
 var postRecord = function(guesses) {
 	console.log('posting');
+	console.log(guesses);
 	return function(dispatch) {
-		var method = {method: 'POST'};
-		var url = '/fewest-guesses';	
-		return fetch(url, method)
+		var url = '/fewest-guesses';
+		var headers = {
+			'Accept': 'application/json',
+			'Content-Type': 'application/json'
+		};
+		var totalGuesses = JSON.stringify({guesses: guesses});
+		return fetch(url, {method: 'POST', headers: headers, body: totalGuesses, mode: 'cors'})
 		.then(function(response) {
        	    if (response.status < 200 || response.status >= 300) {
            	    var error = new Error(response.statusText);
@@ -87,9 +92,13 @@ var postRecord = function(guesses) {
             }
             return response;
     	    })
-    	.then(function(data) {
-            var guesses = data;
+		.then(function(response) {
+            return response.json();
+        })
+    	.then(function(totalGuesses) {
+            var guesses = totalGuesses.guesses;
    	        return dispatch(saveFewestGuesses(guesses));
+   	        console.log(guesses);
    	    })
         .catch(function() {
    	        console.log('error');
