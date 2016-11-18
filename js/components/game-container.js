@@ -29,15 +29,15 @@ var GameContainer = React.createClass({
 	submitGuess: function(event) {
 		event.preventDefault();
 		var guess = this.refs.guessInput.value;
-		console.log(guess);
 		this.props.dispatch(actions.guessNumber(guess));
 		this.props.dispatch(actions.response());
 		this.setState({userGuess: ''});
 	},
 
 	newGame: function(event) {
-		//event.preventDefault();
+		event.preventDefault();
 		this.props.dispatch(actions.newGame());
+		this.props.dispatch(actions.getRecord());
 	},
 
 	render: function(){

@@ -6,8 +6,6 @@ var actions = require('../actions/index');
 var Record = function(props) {
 	console.log(props);
 	if(props.gameWon == true) {
-		console.log(props.record);
-		console.log(props.guesses)
 		props.dispatch(actions.postRecord(props.guesses));
 	}
 	var record = props.record;

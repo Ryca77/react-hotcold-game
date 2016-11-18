@@ -17,20 +17,20 @@ app.use(express.static('build'));
 var currentRecord = null;
 
 app.get('/fewest-guesses', function(req, res) {
-	console.log(currentRecord);
-	res.json({record: currentRecord});
+	var session = req.session;
+	session.record = currentRecord;
+	console.log(session.record);
+	res.json({record: session.record});
 });
 
 app.post('/fewest-guesses', function(req, res) {
 	var totalGuesses = req.body.guesses;
-	console.log(totalGuesses);
 	var session = req.session;
 	if(currentRecord == null || totalGuesses < currentRecord) {
 		session.record = totalGuesses;
 		currentRecord = totalGuesses;
 	}
-	console.log(session.record);
-	console.log(currentRecord);
+	res.status(201).json(currentRecord);
 });
 
 app.listen(process.env.PORT || 8080, process.env.IP);
