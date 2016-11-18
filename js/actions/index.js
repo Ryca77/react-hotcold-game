@@ -39,7 +39,7 @@ var fetchFewestGuesses = function(record) {
 
 //save fewest guesses
 var SAVE_FEWEST_GUESSES = 'SAVE_FEWEST_GUESSES';
-var saveFewestGuesses = function(guesses) {
+var saveFewestGuesses = function(guesses) {	
 	return {
 		type: SAVE_FEWEST_GUESSES,
 		record: guesses
@@ -83,22 +83,23 @@ var postRecord = function(guesses) {
 			'Content-Type': 'application/json'
 		};
 		var totalGuesses = JSON.stringify({guesses: guesses});
-		return fetch(url, {method: 'POST', headers: headers, body: totalGuesses, mode: 'cors'})
-		.then(function(response) {
+		return fetch(url, {method: 'POST', headers: headers, body: totalGuesses, mode: 'cors'}).then(function(response) {
        	    if (response.status < 200 || response.status >= 300) {
            	    var error = new Error(response.statusText);
         		error.response = response;
            	    throw error;
             }
+            console.log('success 1');
             return response;
     	    })
 		.then(function(response) {
+            console.log('success 2');
             return response.json();
         })
-    	.then(function(totalGuesses) {
-            var guesses = totalGuesses.guesses;
-   	        return dispatch(saveFewestGuesses(guesses));
-   	        console.log(guesses);
+    	.then(function(data) {
+    		console.log(data);
+            var record = data.guesses;
+   	        return dispatch(saveFewestGuesses(record));
    	    })
         .catch(function() {
    	        console.log('error');
